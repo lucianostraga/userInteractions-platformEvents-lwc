@@ -5,5 +5,18 @@
     <targets>
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default,lightning__HomePage">
+            <property name="trackSessionStart" type="Boolean" label="Track Session Start" default="true"></property>
+            <property name="trackSessionEnd" type="Boolean" label="Track Session End" default="true"></property>
+            <property name="trackClicks" type="Boolean" label="Track Clicks" default="true"></property>
+            <property name="trackNavigation" type="Boolean" label="Track Navigation" default="true"></property>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
+
+
+

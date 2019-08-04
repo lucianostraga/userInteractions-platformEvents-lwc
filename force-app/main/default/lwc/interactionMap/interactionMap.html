@@ -1,0 +1,7 @@
+<template>
+    <lightning-card  title="Geo Location" icon-name="action:map">
+        <template if:true={mapMarkers}>
+            <lightning-map class="map" zoom-level="15" map-markers={mapMarkers}></lightning-map>
+        </template>
+    </lightning-card>
+</template>

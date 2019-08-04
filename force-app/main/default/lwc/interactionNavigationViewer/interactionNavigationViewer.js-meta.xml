@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="interactionNavigationViewer">
+    <apiVersion>46.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage">
+            <property name="imageUrl" type="String" label="Background Image"/>
+            <property name="path" type="String" label="URL Path"/>
+            <property name="pageTitle" type="String" label="Page Title"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

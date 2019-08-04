@@ -3,8 +3,23 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/auraPubsubCommunities": [
+                "auraPubsubCommunities/auraPubsubCommunities.js"
+            ],
             "c/interactionLogger": [
                 "interactionLogger/interactionLogger.js"
+            ],
+            "c/lwcExternalEventSender": [
+                "lwcExternalEventSender/lwcExternalEventSender.js"
+            ],
+            "c/pubsubCommunities": [
+                "pubsubCommunities/pubsubCommunities.js"
+            ],
+            "c/interactionMap": [
+                "interactionMap/interactionMap.js"
+            ],
+            "c/interactionNavigationViewer": [
+                "interactionNavigationViewer/interactionNavigationViewer.js"
             ]
         }
     },
