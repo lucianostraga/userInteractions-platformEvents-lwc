@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>User__c</columns>
+    <columns>Impersonated_Session__c</columns>
+    <columns>Impersonated_By__c</columns>
+    <columns>Login_Time__c</columns>
+    <columns>Source_IP__c</columns>
+    <columns>Application__c</columns>
+    <columns>Browser__c</columns>
+    <columns>Platform__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

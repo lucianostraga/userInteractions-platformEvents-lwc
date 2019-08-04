@@ -2,4 +2,4 @@
     <c:auraPubsubCommunities aura:id="pubsub" />
 
     <lightning:button variant="brand"  label="Sending Custom Event from Aura Component" title="Neutral action" onclick="{!c.handleClick}"/>
-</aura:component>	
+</aura:component>

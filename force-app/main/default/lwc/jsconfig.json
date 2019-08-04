@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "c/auraPubsubCommunities": [
@@ -9,27 +8,18 @@
             "c/interactionLogger": [
                 "interactionLogger/interactionLogger.js"
             ],
-            "c/lwcExternalEventSender": [
-                "lwcExternalEventSender/lwcExternalEventSender.js"
-            ],
-            "c/pubsubCommunities": [
-                "pubsubCommunities/pubsubCommunities.js"
-            ],
             "c/interactionMap": [
                 "interactionMap/interactionMap.js"
             ],
             "c/interactionNavigationViewer": [
                 "interactionNavigationViewer/interactionNavigationViewer.js"
+            ],
+            "c/lwcExternalEventSender": [
+                "lwcExternalEventSender/lwcExternalEventSender.js"
+            ],
+            "c/pubsubCommunities": [
+                "pubsubCommunities/pubsubCommunities.js"
             ]
         }
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
     }
 }

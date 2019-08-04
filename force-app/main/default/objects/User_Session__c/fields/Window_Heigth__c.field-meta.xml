@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Window_Heigth__c</fullName>
+    <externalId>false</externalId>
+    <label>Window Heigth</label>
+    <summarizedField>User_Interaction__c.Window_Heigth__c</summarizedField>
+    <summaryForeignKey>User_Interaction__c.User_Session__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
