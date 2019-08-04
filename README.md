@@ -1,1 +1,1 @@
-#User interaction tracker with Lightning Web Components and Platform Events for Lightning Experience and Communities
+# User interaction tracker with Lightning Web Components and Platform Events for Lightning Experience and Communities
