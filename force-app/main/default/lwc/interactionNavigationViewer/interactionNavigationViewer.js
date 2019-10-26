@@ -9,7 +9,7 @@ export default class InteractionNavationViewer extends LightningElement {
     @api pageTitle;
 
     connectedCallback(){
-        this.pageTitle = 'Session Navigation Clicks on: '+this.pageTitle;
+        this.pageTitle = 'Session Navigation Clicks on : '+this.pageTitle;
 
         getUserInteractions({ userSessionId: this.recordId , urlPath : this.path})
             .then(result => {
@@ -29,12 +29,9 @@ export default class InteractionNavationViewer extends LightningElement {
         ctx.canvas.height = interactions[0].User_Session__r.Window_Heigth__c;
 
         let background = new Image();
-        background.src = this.imageUrl;
-
-        let sizer = this.scalePreserveAspectRatio(background.width,background.height,ctx.canvas.width,ctx.canvas.height);
-
-        background.onload = function(){
-
+    
+        background.onload = ()=>{
+            let sizer = this.scalePreserveAspectRatio(background.width,background.height,ctx.canvas.width,ctx.canvas.height);
             ctx.drawImage(background,0,0,background.width,background.height,0,0,background.width*sizer,background.height*sizer);
 
             interactions.forEach(element => {               
@@ -47,8 +44,8 @@ export default class InteractionNavationViewer extends LightningElement {
             });
 
         }
-        background.src = this.imageUrl;
 
+        background.src = this.imageUrl; 
     }
 
     scalePreserveAspectRatio(imgW,imgH,maxW,maxH){

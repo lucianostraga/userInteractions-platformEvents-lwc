@@ -11,7 +11,7 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>auraExternalEventSender</members>
+        <members>auraExtern alEventSender</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

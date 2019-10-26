@@ -12,11 +12,13 @@ export default class InteractionLogger extends LightningElement {
     @api trackSessionEnd;
     @api trackClicks;  
 
-    anotherTrackerActive; 
+    anotherTrackerActive = false; 
 
     constructor(){
         super();
-
+        console.log('LOGGER INIT');
+        console.log(window.history.trackingId);
+        
         if(!window.history.trackingId){//AVOID DUPLICATE EVENT LISTENERS
             window.history.trackingId = this.generateTrackingId(18);
         }else{
@@ -25,16 +27,19 @@ export default class InteractionLogger extends LightningElement {
 
     }
 
+    initilizeVariables(){
+        if(this.trackSessionStart === undefined){this.trackSessionStart = true;}
+        if(this.trackNavigation === undefined){this.trackNavigation = true;}
+        if(this.trackSessionEnd === undefined){this.trackSessionEnd = true;}
+        if(this.trackClicks === undefined){this.trackClicks = true;}
+    }
+
     connectedCallback(){
-
-        console.log(this.trackNavigation);
-        console.log(this.trackSessionStart);
-        console.log(this.trackSessionEnd);
-        console.log(this.trackClicks);
-
-        registerListener('customInteractionEvent', this.handleCustomInteractionEvent, this);
+        this.initilizeVariables();
 
         if(this.anotherTrackerActive){return;}//ANOTHER LOGGER COMPONENT ALREADY ADDED ALL THE WINDOW EVENT LISTENERS
+
+        registerListener('customInteractionEvent', this.handleCustomInteractionEvent, this);
 
         if(this.trackSessionStart){
             this.handleTrackSessionStart();
