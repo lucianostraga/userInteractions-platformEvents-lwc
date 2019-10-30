@@ -1,0 +1,9 @@
+.connected{
+    color: green;
+    font-weight: bold;
+}
+
+.disconnected{
+    color: red;
+    font-weight: bold;
+}

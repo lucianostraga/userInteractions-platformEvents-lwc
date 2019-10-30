@@ -1,0 +1,57 @@
+<template>
+        <lightning-card title="Active Users" icon-name="utility:people">
+    
+            <div class="slds-m-around_small">
+    
+                <template if:true={usersToDisplay}>
+                
+                    <table  class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontals">
+                        <thead >
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="User">User
+                                    </div>
+                                </th>
+                                                     
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Last Activity">Last Activity
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            
+                            <template for:each={users} for:item="ev">
+                                
+                                <tr key={ev.CreatedDate} class="slds-hint-parent">
+                                    <td data-label="User">
+                                        <div class="">
+                                            <a target="__blank" href={ev.UserUrl}>
+                                                <lightning-badge label={ev.User_Name__c}></lightning-badge>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    
+                                    <td data-label="Time">
+                                        <div class="slds-truncate">
+                                            <b><lightning-formatted-date-time month="2-digit" day="2-digit" hour="numeric"  minute="numeric" second="numeric" value={ev.CreatedDate}></lightning-formatted-date-time></b>
+                                        </div>
+                                    </td> 
+                                    
+                                </tr>
+                                
+                            </template>
+            
+                        </tbody>
+                    </table>
+                    
+                </template>
+    
+                <template if:false={usersToDisplay}>
+                    <b>No active users</b>
+                </template>
+    
+            </div>
+        </lightning-card>
+    </template>

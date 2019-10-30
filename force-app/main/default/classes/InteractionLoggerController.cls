@@ -75,6 +75,7 @@ public without sharing class InteractionLoggerController {
         uie.Window_Width__c = ie.windowWidth;
         uie.Window_Heigth__c = ie.windowHeigth;
         uie.User_ID__c = UserInfo.getUserId();
+        uie.User_Name__c = UserInfo.getName();
         return uie;
     }
 

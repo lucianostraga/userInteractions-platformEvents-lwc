@@ -1,0 +1,87 @@
+<template>
+    <lightning-card title="Current Events" icon-name="utility:broadcast">
+        <lightning-button label="Clear Logs" onclick={handleClearLogs} slot="actions"></lightning-button>
+
+        <div class="slds-m-around_small">
+
+            <template if:true={eventsToDisplay}>
+            
+                <table  class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontals">
+                    <thead >
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="User">User
+                                </div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Impersonated">Impersonated
+                                </div>
+                            </th>
+                            
+                            <th scope="col">
+                                <div class="slds-truncate" title="Event Type">Event Type
+                                </div>
+                            </th>
+                            
+                            <th scope="col">
+                                <div class="slds-truncate" title="URL">Page URL
+                                </div>
+                            </th>
+                                                                                    
+                            <th scope="col">
+                                <div class="slds-truncate" title="Time">Time
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        <template for:each={events} for:item="ev">
+                            
+                            <tr key={ev.CreatedDate} class="slds-hint-parent">
+                                <td data-label="User">
+                                    <div class="">
+                                        <a target="__blank" href={ev.UserUrl}>
+                                            <lightning-badge label={ev.User_Name__c}></lightning-badge>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td data-label="Impersonated">
+                                    <div class="slds-truncate" >
+                                        <lightning-input type="checkbox" name="input3" checked={ev.Impersonated_Session__c} disabled></lightning-input>
+                                    </div>
+                                </td>
+                            
+                                <td data-label="Event Type">
+                                    <div class="slds-truncate" ><div class={ev.TypeClass}>{ev.Type__c}</div></div>
+                                </td>
+                                                                            
+                                <td data-label="URL Path">
+                                    <div class="slds-truncate" title={ev.URL__c}>{ev.Path__c}</div>
+                                </td>
+                                
+                                <td data-label="Time">
+                                    <div class="slds-truncate">
+                                        <b><lightning-formatted-date-time month="2-digit" day="2-digit" hour="numeric"  minute="numeric" second="numeric" value={ev.CreatedDate}></lightning-formatted-date-time></b>
+                                    </div>
+                                </td> 
+                                
+                            </tr>
+                            
+                        </template>
+        
+                    </tbody>
+                </table>
+                
+            </template>
+
+            <template if:false={eventsToDisplay}>
+                <b>No events registered yet...</b>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
