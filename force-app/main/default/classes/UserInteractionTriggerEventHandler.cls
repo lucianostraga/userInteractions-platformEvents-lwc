@@ -1,6 +1,7 @@
 public without sharing class UserInteractionTriggerEventHandler {
     
     public static void handleAfterInsert(List<User_Interaction_Event__e> newEvents){
+        System.debug('####### '+newEvents);
 
         Set<String> trackingIds = new Set<String>();
         Map<String,Id> userSessionTrackingMap = new Map<String,Id>();
@@ -52,25 +53,20 @@ public without sharing class UserInteractionTriggerEventHandler {
         ui.URL__c = uie.URL__c;
         ui.Tracking_Id__c = uie.Tracking_Id__c;
 
-        //REDUNDANT FIELDS
-        ui.Application__c = uie.Application__c;
-        ui.Browser__c = uie.Browser__c;
-        ui.City__c = uie.City__c;
-        ui.Country_ISO__c = uie.Country_ISO__c;
-        ui.Impersonated_By__c = uie.Impersonated_ById__c;
-        ui.Impersonated_Session__c = uie.Impersonated_Session__c;
-        ui.Coordinates__Longitude__s = uie.Longitude__c;
-        ui.Coordinates__Latitude__s = uie.Latitude__c;
-        ui.Login_Time__c = uie.Login_Time__c;
-        ui.Login_Url__c = uie.Login_Url__c;
-        ui.Network_Id__c = uie.Network_ID__c;
-        ui.Platform__c = uie.Platform__c;
-        ui.PostalCode__c = uie.PostalCode__c;
-        ui.Source_IP__c = uie.Source_IP__c;
-        ui.Subdivision__c = uie.Subdivision__c;
-        ui.User__c = uie.User_ID__c;
         ui.Window_Heigth__c = uie.Window_Heigth__c;
         ui.Window_Width__c = uie.Window_Width__c;
+        ui.Screen_Height__c = uie.Screen_Height__c;
+        ui.Screen_Width__c = uie.Screen_Width__c;
+
+        Boolean landscapeScreen = (uie.Window_Width__c > uie.Window_Heigth__c);
+
+        if(landscapeScreen && uie.Screen_Width__c < uie.Screen_Height__c){//SCREEN VALUES SHOULD BE FLIPPED
+            ui.Screen_Height__c = uie.Screen_Width__c;
+            ui.Screen_Width__c = uie.Screen_Height__c;
+        }
+
+        ui.Geolocation__Latitude__s = uie.Cooridanates_Latitude__c;
+        ui.Geolocation__Longitude__s = uie.Coordinates_Longitude__c;
         return ui;
     } 
 
@@ -93,8 +89,14 @@ public without sharing class UserInteractionTriggerEventHandler {
         us.Source_IP__c = uie.Source_IP__c;
         us.Sub_Division__c = uie.Subdivision__c;
         us.User__c = uie.User_ID__c;
-        //us.Window_Heigth__c = uie.Window_Heigth__c;
-        //us.Window_Width__c = uie.Window_Width__c;
+        us.App_Code_Name__c = uie.App_Code_Name__c;
+        us.App_Name__c = uie.App_Name__c;
+        us.App_Version__c = uie.App_Version__c;
+        us.Browser_Platform__c = uie.Browser_Platform__c;
+        us.Language__c = uie.Language__c;
+        us.Product__c = uie.Product__c;
+        us.User_Agent__c = uie.User_Agent__c;
+        us.Vendor__c = uie.Vendor__c;
         return us;
     }
 

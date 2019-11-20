@@ -12,6 +12,9 @@ export default class InteractionLogger extends LightningElement {
     @api trackSessionEnd;
     @api trackClicks;  
 
+    coordinatesLatitude;
+    coordinatesLongitude;
+
     anotherTrackerActive = false; 
 
     constructor(){
@@ -23,6 +26,10 @@ export default class InteractionLogger extends LightningElement {
             window.history.trackingId = this.generateTrackingId(18);
         }else{
             this.anotherTrackerActive= true;
+        }
+
+        if (window.navigator.geolocation){
+            window.navigator.geolocation.getCurrentPosition( (position)=> { this.getGeoCoordinates(position); });
         }
 
     }
@@ -80,7 +87,10 @@ export default class InteractionLogger extends LightningElement {
 
     handleTrackClicks(){
         window.addEventListener("mousedown", (event) => {
-            this.publishInteractionEvent("Click",event.clientX,event.clientY);
+            /*alert(event.clientY.toString())
+            alert(event.screenY.toString())
+            alert(event.pageY.toString())*/
+            this.publishInteractionEvent("Click",event.pageX,event.pageY);
         });
     }
 
@@ -117,11 +127,26 @@ export default class InteractionLogger extends LightningElement {
             type : type,
             cordinateX : cordinateX,
             cordinateY : cordinateY,
-            windowWidth : window.innerWidth,
-            windowHeigth : window.innerHeight,
-            trackingId : window.history.trackingId
+            /*windowWidth : window.innerWidth,
+            windowHeigth : window.innerHeight,*/
+            windowWidth : document.documentElement.clientWidth,
+            windowHeigth : document.documentElement.scrollHeight,
+            trackingId : window.history.trackingId,
+            appCodeName : window.navigator.appCodeName,
+            appName : window.navigator.appName,
+            appVersion : window.navigator.appVersion,
+            browserPlatform : window.navigator.platform,
+            coordinatesLatitude : this.coordinatesLatitude,
+            coordinatesLongitude : this.coordinatesLongitude,
+            language : window.navigator.language,
+            product : window.navigator.product,
+            screenWidth : window.screen.width,
+            screenHeigth : window.screen.height,
+            userAgent : window.navigator.userAgent,
+            vendor : window.navigator.vendor,
         };
-        console.log(JSON.stringify(eventDescriptor));
+
+        console.log(eventDescriptor);
     
         publishEvent({ jsonEvent: JSON.stringify(eventDescriptor) })
             .then(result => {
@@ -142,6 +167,11 @@ export default class InteractionLogger extends LightningElement {
             sessionId += possibleChar.charAt(Math.floor(Math.random() * possibleChar.length));
         
         return sessionId;    
+    }
+
+    getGeoCoordinates(position){
+        this.coordinatesLatitude = position.coords.latitude;
+        this.coordinatesLongitude = position.coords.longitude;
     }
 
 }

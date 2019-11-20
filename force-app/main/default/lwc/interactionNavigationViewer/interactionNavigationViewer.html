@@ -1,5 +1,38 @@
 <template>
-    <lightning-card  title={pageTitle} icon-name="action:web_link">
-        <canvas style="border:1px solid #d3d3d3; width: 100%; max-height: 24rem;"></canvas>
+    <lightning-card  title={pageTitle} icon-name="standard:actions_and_buttons">
+        <lightning-button-icon onclick={handleRefresh} icon-name="utility:refresh" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+
+        <lightning-layout multiple-rows="true">
+
+            <lightning-layout-item size="12" class="slds-p-horizontal_small">
+                <div class="slds-text-heading_small">Select a device and a screen to watch clicks done.</div>
+            </lightning-layout-item>
+
+            <template if:true={devicesOptionsAvailable}>
+                <lightning-layout-item size="12" class="slds-p-horizontal_small slds-p-top_xx-small">
+                    <lightning-combobox onchange={handleDeviceChange} value={device} name="device" label="Device" options={devicesOptions} required></lightning-combobox>
+                </lightning-layout-item>
+            </template>
+
+            <template if:true={screenOptionsAvailable}>
+                <lightning-layout-item size="12" class="slds-p-horizontal_small slds-p-top_xx-small">
+                    <lightning-combobox onchange={handleScreenChange} value={screen} name="screen" label="Screen" options={screenOptions} required></lightning-combobox>
+                </lightning-layout-item>
+            </template>
+
+            <template if:true={displayCanvas}>
+                <lightning-layout-item size="12" class="slds-p-top_small">
+                    <canvas style="max-width: 100%; max-height: 24rem;"></canvas>
+                </lightning-layout-item>
+            </template>
+
+            <template if:true={noInteractions}>
+                <lightning-layout-item size="12" class="slds-p-horizontal_small slds-p-top_small">
+                    <div class="slds-text-heading_medium">No clicks registered yet!</div>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+
     </lightning-card>
 </template>

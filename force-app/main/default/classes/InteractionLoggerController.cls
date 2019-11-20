@@ -76,6 +76,18 @@ public without sharing class InteractionLoggerController {
         uie.Window_Heigth__c = ie.windowHeigth;
         uie.User_ID__c = UserInfo.getUserId();
         uie.User_Name__c = UserInfo.getName();
+        uie.App_Code_Name__c = ie.appCodeName;
+        uie.App_Name__c = ie.appName;
+        uie.App_Version__c = ie.appVersion;
+        uie.Browser_Platform__c = ie.browserPlatform;
+        uie.Coordinates_Longitude__c = ie.coordinatesLongitude;
+        uie.Cooridanates_Latitude__c = ie.coordinatesLatitude;
+        uie.Language__c = ie.language;
+        uie.Product__c = ie.product;
+        uie.Screen_Height__c = ie.screenHeigth;
+        uie.Screen_Width__c = ie.screenWidth;
+        uie.User_Agent__c = ie.userAgent;
+        uie.Vendor__c = ie.vendor;
         return uie;
     }
 
@@ -112,6 +124,18 @@ public without sharing class InteractionLoggerController {
         public Integer cordinateY;
         public Integer windowWidth;
         public Integer windowHeigth;
+        public String appCodeName;
+        public String appName;
+        public String appVersion;
+        public String browserPlatform;
+        public Decimal coordinatesLatitude;
+        public Decimal coordinatesLongitude;
+        public String language;
+        public String product;
+        public Integer screenWidth;
+        public Integer screenHeigth;
+        public String userAgent;
+        public String vendor;
     }
 
 }
