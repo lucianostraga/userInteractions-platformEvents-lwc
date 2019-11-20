@@ -2,6 +2,7 @@
 import { LightningElement, api,track,wire} from 'lwc';
 import getUserClicks from '@salesforce/apex/InteractionNavigationViewerController.getUserClicks';
 import getDevicesWithScreens from '@salesforce/apex/InteractionNavigationViewerController.getDevicesWithScreens';
+import getUserClicksBySessionId from '@salesforce/apex/InteractionNavigationViewerController.getUserClicksBySessionId';
 
 export default class InteractionNavigationViewer extends LightningElement {
     @api recordId;
@@ -58,7 +59,19 @@ export default class InteractionNavigationViewer extends LightningElement {
             }
 
             this.displayCanvas = true;
-            this.getAllClicks();
+
+            console.log(this.recordId);
+
+            if(this.recordId){
+                console.log('aca');
+                this.getSessionClicks();
+            }else{
+                console.log('ac2');
+                this.getAllClicks();
+                
+            }
+
+            
         }
     }
 
@@ -74,10 +87,27 @@ export default class InteractionNavigationViewer extends LightningElement {
         }
     }
 
+
     getAllClicks(){
         getUserClicks({urlPath : this.path, width: this.width, height: this.height})
             .then(result => {
-                console.log(result);
+                if(result.length > 0 ){
+                    this.displayCanvas = true;
+                    this.noInteractions = false;
+                    this.drawCanvas(result); 
+                }else{
+                    this.displayCanvas = false;
+                    this.noInteractions = true;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    getSessionClicks(){
+        getUserClicksBySessionId({urlPath : this.path, width: this.width, height: this.height, sessionId : this.recordId})
+            .then(result => {
                 if(result.length > 0 ){
                     this.displayCanvas = true;
                     this.noInteractions = false;
