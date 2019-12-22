@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Geolocation__c</fullName>
+    <displayLocationInDecimal>true</displayLocationInDecimal>
+    <externalId>false</externalId>
+    <label>Geolocation</label>
+    <required>false</required>
+    <scale>12</scale>
+    <trackTrending>false</trackTrending>
+    <type>Location</type>
+</CustomField>
